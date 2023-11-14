@@ -3,18 +3,21 @@ Library    SeleniumLibrary
 Resource   cloudCredentials.robot
 Suite Teardown   Suite shutdown
 
-*** Variables ***
-${browserName}  browserName:chrome
-${testName}   testName:Robot - Demo website test
-${desiredCapabilities}  accessKey:${accessKey}, ${browserName}, ${testName}
 
 *** Keywords ***
 Suite shutdown
      Close All Browsers
+Start session
+     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+     Call Method     ${options}	set_capability	digitalai:accessKey	${accessKey}
+     Call Method     ${options}	set_capability	experitest:testName	Robot - Demo website test
+     ${caps}=     Call Method     ${options}    to_capabilities
+     Create Webdriver	Remote	command_executor=${cloudUrl}	desired_capabilities=${caps}
 
 *** Test Cases ***
 Demo test
-    Open Browser	https://demo-bank.ct.digital.ai	remote_url=${cloudUrl}	desired_capabilities=${desiredCapabilities}
+    Start session
+    Go To	https://demo-bank.ct.digital.ai
     ${"Username"}  set variable    xpath://*[@data-auto='username']//input
     input text  ${"Username"}  company
     ${"Password"}  set variable    xpath://*[@data-auto='password']//input

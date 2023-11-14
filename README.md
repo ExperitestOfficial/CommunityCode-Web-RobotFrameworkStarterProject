@@ -13,6 +13,8 @@ To set up the project:
 1. Set up authentication by updating the following parameters in [cloudCredentials.robot](cloudCredentials.robot):
     * cloudUrl - Url for the cloud the test would run in. For example, https://company.experitest.com/
     * accessKey -  Personal authentication. See [Obtaining Access Key](https://docs.digital.ai/bundle/TE/page/obtaining_access_key.html) to learn how to obtain an access key.
+    
+3. Make sure that Python 3 installed.
 ## Install Robot Framework globally
 Open your terminal and run:\
     ```
@@ -22,12 +24,9 @@ Open your terminal and run:\
     pip install --upgrade robotframework-seleniumlibrary
     ```
 ## Desired Capabilities
-In this example we use desired capabilities to run a test on chrome.\
-To change the browser name edit the variable's value of browserName in [test.robot](test.robot)\
-To add more capabilities to the desired capabilities use this template:\
-${[capability name]}   [capability name]:[capability value]
-1. Add the new capability to the Variable section.
-2. Put the ${[capability name]} at the end of ${desiredCapabilities}
+In this example we run a test on chrome using Chrome Options.\
+See [The supported browsers](https://www.selenium.dev/documentation/webdriver/browsers/) to run the test on another browser.
+
 
 Continuous Cloud Testing expands Selenium's capabilities and allows better control over your test.
 
