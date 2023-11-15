@@ -11,8 +11,7 @@ Start session
      ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
      Call Method     ${options}	set_capability	digitalai:accessKey	${accessKey}
      Call Method     ${options}	set_capability	experitest:testName	Robot - Demo website test
-     ${caps}=     Call Method     ${options}    to_capabilities
-     Create Webdriver	Remote	command_executor=${cloudUrl}	desired_capabilities=${caps}
+     Create Webdriver	Remote	command_executor=${cloudUrl}	options=${options}
 
 Demo test
     Start session
